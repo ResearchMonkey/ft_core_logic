@@ -1,4 +1,5 @@
 import csv
+import datetime
 
 
 # Splash screen, user is show
@@ -16,13 +17,17 @@ import csv
 
 # user is displayed skills score from results from last COF
 
-f = open("user_local_hist_cof.csv", "w")
-f.write(f'date,'
-        f'shot_number,'
-        f'time,'
-        f'location,'
-        f'reload\n')
-f.close()
+
+# f = open("user_local_hist_cof.csv", "w")
+# f.write(f'date,'
+#         f'shot_number,'
+#         f'Hit,'
+#         f'score,'
+#         f'time,'
+#         f'target,'
+#         f'hit location,'
+#         f'reload\n')
+# f.close()
 
 
 def write_to_file_append(file_name, file_values):
@@ -62,6 +67,7 @@ def select_cof():
         # print(result)
         selected_cof_number = input("Which Drill number will you run?")
         # print(result[selected_cof_number])
+
         selected_cof_inprog = result[selected_cof_number]
         cof_name = selected_cof_inprog[0]
         cof_min_rd_count = selected_cof_inprog[1]
@@ -78,23 +84,65 @@ def select_cof():
         cof_reloads = selected_cof_inprog[12]
         cof_transition = selected_cof_inprog[13]
         cof_Movement = selected_cof_inprog[14]
-        cof_Judgement  = selected_cof_inprog[15]
+        cof_Judgement = selected_cof_inprog[15]
         cof_failure_simulations = selected_cof_inprog[16]
         cof_scoring = selected_cof_inprog[17]
         cof_instructions = selected_cof_inprog[18]
+
+        target_location001 = cof_target_001_positions.split("_")
+        degree_from_zero = target_location001[0]
+        distance_from_zero = target_location001[1]
+        hight_above_zero = target_location001[2]
+        facing_angle = target_location001[3]
+        angle_of_rotation = target_location001[4]
+
+        print(f"Set up your target {distance_from_zero} inchs from your firing postion")
+
         print("\n")
         print(f"You have selected to run Drill Number {selected_cof_number} - {cof_name}!\n")
         print("Instructions")
         print(cof_instructions)
 
 
-target_location = '360_252_70_180_0'
+def record_results():
+    print("Enter your results!")
+    # with open("user_local_hist_cof.csv", mode='r')as loc_hist:
+    #     for row in loc_hist:
+    #         shot_number001 = f'{row["shot_number"]}'
+    f = open("user_local_hist_cof.csv", "a")
+    # date, shot_number, Hit, score,time,target,hit location, reload
+    record_shot_1_date = datetime.datetime.now()
+    with open("user_local_hist_cof.csv", mode='r')as loc_hist:
+        csv_reader = csv.DictReader(loc_hist)
+        for row in csv_reader:
+            shotnumber = int(row['shot_number'])
+    shot_number = shotnumber + 1
+    record_shot_1_hit = input('Did you hit the score zone? Y/N ')
+    record_shot_1_score = input('How many points did you score? ')
+    record_shot_1_time = input('Enter the time of your first shot in seconds ')
+    record_shot_1_target = input("What target where you aiming at? ")
+    record_shot_1_hit_location = input("Where did the shot land on the target? ")
+    record_shot_1_reload = input('Did you have to reload? Y/N ')
+    shot_record_line = f'\n{record_shot_1_date}, ' \
+                       f'{shot_number}, ' \
+                       f'{record_shot_1_hit}, ' \
+                       f'{record_shot_1_score}, ' \
+                       f'{record_shot_1_time},' \
+                       f'{record_shot_1_target}, ' \
+                       f'{record_shot_1_hit_location}, ' \
+                       f'{record_shot_1_reload}'
+    print(shot_record_line)
+    f.write(shot_record_line)
+    f.close()
 
-degree_from_zero = 1
-distance_from_zero = 1
-hight_above_zero = 1
-facing_angle = 1
-angle_of_rotation = 1
+
+# with open("user_local_hist_cof.csv", mode='r')as loc_hist:
+#     csv_reader = csv.DictReader(loc_hist)
+#     for row in csv_reader:
+#         print(row)
+#         shotnumber = int(row['shot_number'])
+#         print(shotnumber)
+#         print(shotnumber + 1)
 
 
-
+record_results()
