@@ -1,1 +1,5 @@
-date,shot_number,time,location,reload
+date,shot_number,Hit,score,time,target,hit location,reload
+2020-05-22 21:13:06.035995, 1, y, 3, 4.65,8in, 4x4, n
+2020-05-22 21:43:00.237648, 2, Y, 4, 3.22,8in, 4x3, N
+2020-05-22 21:44:06.877975, 3, Y, 0, 5.2,4in, 8x8, n
+2020-05-22 21:46:05.028365, 4, Y, 2, 3.2,3in, 3x3, n
