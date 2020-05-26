@@ -2,6 +2,58 @@ import csv
 import datetime
 
 
+def break_target_location(target_name_num, value):
+    print(target_name_num)
+    target_name_num = value.split("_")
+    degree_from_zero = target_name_num[0]
+    print(f'Target is at {degree_from_zero} degrees from shooter ')
+    distance_from_zero = target_name_num[1]
+    print(f'{distance_from_zero} inches away,')
+    hight_above_zero = target_name_num[2]
+    print(f'The top of the target is {hight_above_zero} above the ground')
+    facing_angle = target_name_num[3]
+    print(f'facing {facing_angle} degrees')
+    angle_of_rotation = target_name_num[4]
+    print(f'Angle of target is {angle_of_rotation} degrees\n')
+    # TODO crate a dictionary from this based off target_name_num
+
+# cof_id,name,min_rd_count,max_distance,field of fire,number_of_targets,target_001_type,target_001_positions,target_002_type,target_002_positions,starting_position,firing positions,starting conditions,reloads,transition,Movement,Judgement,failure simulations,scoring,instructions
+
+
+cof_selected = {'cof_id': 1,
+                'name': 'F.A.S.T Drill',
+                'min_rd_count': 14,
+                'max_distance': '7 yards',
+                'field of fire': 180,
+                'number_of_targets': 2,
+                'target_001_type': '3x5',
+                'target_001_positions': '360_252_70_180_0',
+                'target_002_type': 'circle 8in',
+                'target_002_positions': '360_252_60_180_0',
+                'starting_position': 'holstered',
+                'firing positions': 1,
+                'starting conditions': 'loaded_chambered_Y_1',
+                'reloads': 1,
+                'transition': 0,
+                'Movement': 0,
+                'Judgement': 0,
+                'failure simulations': 0,
+                'scoring': 1,
+                'instructions': "You will start with your weapon holstered and chambered, with 1(one) round in the magizine. You will have a second magizine loaded with 4 (four) rounds in a carrier. On the command to fire you will 1. Draw from concealment, 2. fire 2 rounds on target 1, 3. reload - slide-lock, 4. fire 4 on target 2. Then make clear and holster your weapon"}
+
+
+for key, value in cof_selected.items():
+    if '_positions' in key:
+        # print(value)
+        break_target_location(f'{key}', value)
+    if 'number_of_targets' in key:
+        print(f'There are {value} Targets')
+
+
+
+
+# break_target_location('target_round_001', '360_000_70_180_0')
+
 # Splash screen, user is show
 # # a filterable list of history combined skills results
 # # a recommended drill based on the worst skill or any skill with no score (order of skill to be weighted)
@@ -89,6 +141,7 @@ def select_cof():
         cof_scoring = selected_cof_inprog[17]
         cof_instructions = selected_cof_inprog[18]
 
+        # break_target_location('target_location001', cof_target_001_positions)
         target_location001 = cof_target_001_positions.split("_")
         degree_from_zero = target_location001[0]
         distance_from_zero = target_location001[1]
@@ -141,8 +194,5 @@ def record_results():
 #     for row in csv_reader:
 #         print(row)
 #         shotnumber = int(row['shot_number'])
-#         print(shotnumber)
-#         print(shotnumber + 1)
 
 
-record_results()
