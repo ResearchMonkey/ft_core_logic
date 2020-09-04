@@ -47,7 +47,10 @@ Core_skills_combat_accuracy_7 = 0
 Core_skills_combat_accuracy_10 = 0
 Core_skills_combat_accuracy_15 = 0
 Core_skills_combat_accuracy_20 = 0
-# area of target divided time
+## if another range is given that should be added
+# area of target multiplied by time added to the rounded range
+# target with 20in area that takes the user 3 seconds to hit at 9.9 yards = 20*3=60 @ 10 add an entry for 60 @ Core_skills_combat_accuracy_10  Maybe focusing on the lower score and deviding would be better?
+
 # TODO Create an equation to represent speed vs accuracy where there is a correlation between how big the target is on the time it takes to hit it. 8in/100%/2.1 second, 6in/100%/4 second
 
 Core_skills_precision = 0
@@ -79,6 +82,8 @@ core_skill_clear_failure = 0
 # If a failure occurs during a COF the split - the average of historic time_on_target of high and low ready is set as clear_failure
 
 core_skill_support_hand = 0
+# TODO Should this be a modifier value for the above or a copy of the above with _support_hand added? MARIO????
+
 
 
 # each function should log a record of the date, time, cof, skill, and value in a user history
